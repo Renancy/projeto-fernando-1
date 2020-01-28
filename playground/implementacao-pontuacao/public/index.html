@@ -27,6 +27,7 @@
                 display: inline-block;
                 vertical-align: top;
             }
+            
 
             #score-table {
                 font-size: 13px;
@@ -75,10 +76,11 @@
         <script src="/socket.io/socket.io.js"></script>
     </head>
     <body>
-        <canvas id="screen" width="10" height="10"></canvas>
+        <canvas id="screen" width="5" height="4"></canvas>
         <table id="score-table"></table>
 
         <script type="module">
+            //se o <script n estiver com o type="module" o index.html fica incapaz de puxar os dados dos imports requisitados
             import createGame from './game.js'
             import createKeyboardListener from './keyboard-listener.js'
             import renderScreen, { setupScreen } from './render-screen.js'

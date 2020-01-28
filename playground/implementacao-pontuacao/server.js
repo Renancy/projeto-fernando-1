@@ -30,14 +30,15 @@ sockets.on('connection', (socket) => {
         console.log(`> Player disconnected: ${playerId}`)
     })
 
-    socket.on('move-player', (command) => {
+    socket.on('move-player', (command) => { //continuar essa logica dentro do sockets.on('connection', ...) para outros comandos! como um comando do admin-client mudando uma variavel ou um client normal querendo mandar alguma informacao para o server
+
         command.playerId = playerId
-        command.type = 'move-player'
+        command.type = 'move-player' // certificando-se q o comando eh move-player para passar para proxima etapa
         
         game.movePlayer(command)
     })
 })
 
 server.listen(3000, () => {
-    console.log(`> Server listening on port: 3000`)
+    console.log(`--> Server escutando porta: 3000`)
 })
