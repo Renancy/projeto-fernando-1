@@ -4,10 +4,14 @@ import createGame from './public/game.js'
 import socketio from 'socket.io'
 
 const app = express()
+const appadm = express()
 const server = http.createServer(app)
+const serveradm = http.createServer(appadm)
 const sockets = socketio(server)
+const socketsadm = socketio(serveradm)
 
 app.use(express.static('public'))
+appadm.use(express.static('publicadm'))
 
 const game = createGame()
 game.start()
@@ -41,4 +45,7 @@ sockets.on('connection', (socket) => {
 
 server.listen(3000, () => {
     console.log(`--> Server escutando porta: 3000`)
+})
+serveradm.listen(5000, () => {
+    console.log('--> Server escutando porta 5000')
 })

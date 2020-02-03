@@ -1,5 +1,5 @@
 import { mod } from "./utils.js"
-
+//const mod = (x, y) => ((y % x) + x) % x 
 export default function createGame() {
     const state = {
         players: {},
