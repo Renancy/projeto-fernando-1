@@ -46,7 +46,7 @@
             
             socket.on('connect', () => {
                 const playerId = socket.id
-                console.log('> Connected to server')
+                console.log('> Connected to server (id: ' + socket.id )
             })
 
             socket.on('disconnect', () => {

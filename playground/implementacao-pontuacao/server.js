@@ -43,9 +43,46 @@ sockets.on('connection', (socket) => {
     })
 })
 
+
 server.listen(3000, () => {
     console.log(`--> Server escutando porta: 3000`)
 })
+
+socketsadm.on('connection', (socket) => {
+    let auten = 0
+    const playerId = socket.id // a autenticacao deve ocorrer AQUI. Utilizando-se do socket.id para rastrear momentaneamente qual jogador esta conetado nesse socket especifico, logo conversar direto com o banco de dados e dar autoricao para manter a conexcap
+    console.log(`> Player connected: ${playerId}`)
+
+
+    socket.on('disconnect', () => {
+        game.removePlayer({ playerId: playerId })
+        console.log(`> Player disconnected: ${playerId}`)
+    })
+    socket.on('login-adm', (creden) => {
+        if(creden[0] == "elefantiase" && creden[1] == "GVcodeRULES"){
+            auten = 1
+        }
+        
+    })
+    socket.on('mudar-dolar-adm', (valor) => {
+        if(auten == 1){
+            //alterar o banco de DADOS
+        }
+        else{
+            socket.emit('acesso-negado', socket.id)
+        }
+        
+    })
+    socket.on('mudar-SELIC-adm', (valor) => {
+        if(auten == 1){
+            //alterar o banco de DADOS
+        }
+        else{
+            socket.emit('acesso-negado', socket.id)
+        }
+        
+    })
+        })
 serveradm.listen(5000, () => {
     console.log('--> Server escutando porta 5000')
-})
+})//OeoyESUTIp-NeB0bAAAE
