@@ -7,25 +7,29 @@
         <title></title>
         <script src="/socket.io/socket.io.js"></script>
     </head>
-    <body>  
+    <body>
+    <script src="/socket.io/socket.io.js"></script>  
             <div id="admin">
                 <div>
                     <input type="text" value="X" id="valorx"><br>
                     <button type="button" onclick="eventox()">Emite um socket com o valor X para o server</button><br>
                     <button type="button" onclick="parareventox()">Parar evento X</button>
                 </div> 
+                <br></br>
 
                 <br>
                 <div>
                     <button type="button" onclick="eventok()">Comecar evento K</button><br>
                     <button type="button" onclick="parareventok()">Parar evento K</button><br>
                 </div>
-
+<br></br>
                 <br>
                 <div>
+                    <input type="text" value="USUARIO" id="usuario"><br>
+                    <input type="text" value="SENHA" id="senha"><br>
                     <button type="button" onclick="login()">Clique para fazer login</button><br>
                 </div>
-
+<br></br>
                 <br>
                 <div>
                     <input type="text" value="coloque um valor Y" id="valory"><br>
@@ -34,8 +38,7 @@
     
             </div>
     </div>
-        <script src="/socket.io/socket.io.js"></script>
-        <script type="module">
+        <script>
             const socket = io()
             let game
             //const scoreTable = document.getElementById('score-table')
@@ -47,6 +50,19 @@
             socket.on('connect', () => {
                 const playerId = socket.id
                 console.log('> Connected to server (id: ' + socket.id )
+            })
+            function eventox() {
+                let valor = document.getElementById("valorx").value;
+                socket.emit('mudar-dolar-adm', valor)
+                }
+            function login() {
+                let valor1 = document.getElementById("usuario").value
+                let valor2 = document.getElementById("senha").value
+                let valor = [valor1, valor2]
+                socket.emit('login-adm', valor)
+            }
+            socket.on('login-negado', (id) => {
+                alert('login_negado (para o id de conexao: ' + id + ')')
             })
 
             socket.on('disconnect', () => {
