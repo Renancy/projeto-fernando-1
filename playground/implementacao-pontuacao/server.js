@@ -55,7 +55,7 @@ socketsadm.on('connection', (socket) => { //conversa do server com o client do A
 
 
     socket.on('disconnect', () => {
-        game.removePlayer({ playerId: playerId })
+        // colocar um if aqui q checa tds os socket.id(s) q desconetarem e se for o socket do ADM tirar as permissoes de ADM relacionadas nesse socket
         console.log(`> Player disconnected: ${playerId}`)
     })
     socket.on('login-adm', (creden) => {
@@ -70,6 +70,7 @@ socketsadm.on('connection', (socket) => { //conversa do server com o client do A
     socket.on('mudar-dolar-adm', (valor) => {
         console.log("valor_de_mudar_dolar_adm: " + valor)
         if(auten == 1){
+            //madar pro MONGO q o socket.id q passou por esse IF eh o ID do ADM
             //alterar o banco de DADOS
         }
         else{
