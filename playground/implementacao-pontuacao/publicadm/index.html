@@ -60,9 +60,18 @@
                 let valor2 = document.getElementById("senha").value
                 let valor = [valor1, valor2]
                 socket.emit('login-adm', valor)
+                document.getElementById("usuario").value = ''
+                document.getElementById("senha").value = ''
+
             }
             socket.on('login-negado', (id) => {
                 alert('login_negado (para o id de conexao: ' + id + ')')
+            })
+            socket.on('acesso-negado', (id) => {
+                alert('acesso negado (para o id de conexao: ' + id + ') FACA LOGIN!')
+            })
+            socket.on('alerta', (alerta) => {
+                alert(alerta)
             })
 
             socket.on('disconnect', () => {

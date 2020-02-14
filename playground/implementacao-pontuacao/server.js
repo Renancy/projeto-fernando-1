@@ -47,7 +47,7 @@ sockets.on('connection', (socket) => { //conversa do server com os clients(n ADM
 server.listen(3000, () => {
     console.log(`--> Server escutando porta: 3000`)
 })
-
+let admid = "31415926"
 socketsadm.on('connection', (socket) => { //conversa do server com o client do ADM
     let auten = 0
     const playerId = socket.id // a autenticacao deve ocorrer AQUI. Utilizando-se do socket.id para rastrear momentaneamente qual jogador esta conetado nesse socket especifico, logo conversar direto com o banco de dados e dar autoricao para manter a conexcap
@@ -55,12 +55,18 @@ socketsadm.on('connection', (socket) => { //conversa do server com o client do A
 
 
     socket.on('disconnect', () => {
+        if(admid == socket.id){
+            admid = "31415926"
+        }
         // colocar um if aqui q checa tds os socket.id(s) q desconetarem e se for o socket do ADM tirar as permissoes de ADM relacionadas nesse socket
         console.log(`> Player disconnected: ${playerId}`)
     })
     socket.on('login-adm', (creden) => {
         if(creden[0] == "elefantiase" && creden[1] == "GVcodeRULES"){
-            auten = 1 // esse auten = 1 talvez seja valido para tds que se conectarem a porta 5000, logo necessita-se conveesa com o banco de dados para esse verificacao
+            admid = socket.id // esse auten = 1 talvez seja valido para tds que se conectarem a porta 5000, logo necessita-se conveesa com o banco de dados para esse verificacao
+        }
+        else if(socket.id == admid){
+            socket.emit('alerta', 'voce ja esta logado')
         }
         else{
             socket.emit('login-negado', socket.id)
@@ -69,7 +75,8 @@ socketsadm.on('connection', (socket) => { //conversa do server com o client do A
     })
     socket.on('mudar-dolar-adm', (valor) => {
         console.log("valor_de_mudar_dolar_adm: " + valor)
-        if(auten == 1){
+        if(socket.id == admid){
+            console.log('dolar alterado com sucesso')
             //madar pro MONGO q o socket.id q passou por esse IF eh o ID do ADM
             //alterar o banco de DADOS
         }
