@@ -25,20 +25,11 @@ const socketsadm = socketio(serveradm)
 app.use(express.static('public'))
 appadm.use(express.static('publicadm'))
 
-//const game = createGame()
-//game.start()
-
-//game.subscribe((command) => { //um Observer simples q so recebe um comando e reenvia para todos os sockets conectados com o server
-//    console.log(`> Emitting ${command.type}`)
-//    sockets.emit(command.type, command) // ex de command.type -> 'add-player' q seria escutado no frontEn (index.html) em: socket.on('add-player', {command} => {game.addPlayer(command)}) (Por exemplo!! ps: comparar com o codigo parafraseado anteriormente em index.html)
-//})
-
 sockets.on('connection', (socket) => { //conversa do server com os clients(n ADM)
-    const playerId = socket.id // a autenticacao deve ocorrer AQUI. Utilizando-se do socket.id para rastrear momentaneamente qual jogador esta conetado nesse socket especifico, logo conversar direto com o banco de dados e dar autoricao para manter a conexcap
-    console.log(`> Player connected: ${playerId}`)
+    console.log(`> Player connected: ${socket.id}`)
 
     socket.on('disconnect', () => {
-        console.log(`> Player disconnected: ${playerId}`)
+        console.log(`> Player disconnected: ${socket.id}`)
     })
     socket.on('login-client', (creden) => {
         Aluno.findOne({sockid: socket.id})
@@ -59,6 +50,35 @@ sockets.on('connection', (socket) => { //conversa do server com os clients(n ADM
                        
     })
 
+    socket.on('pedindo-dados-servico', () => {
+        Aluno.findOne({ sockid: socket.id})
+            .then((user) => socket.emit('dados-servicos', [user["147"],
+                user["148"],
+                user["149"],
+                user["157"],
+                user["158"],
+                user["159"],
+                user["257"],
+                user["258"],
+                user["259"],
+                user["267"],
+                user["268"],
+                user["269"],
+                user["347"],
+                user["348"],
+                user["349"],
+                user["357"],
+                user["358"],
+                user["359"],
+                user["367"],
+                user["368"],
+                user["369"]])
+                
+            )
+            .then(()=>{console.log('aaaaahh')})
+            .catch(() => {socket.emit('acesso-negado')})
+    })
+
     socket.on('alterar-porcetagem-comissao', () => { //continuar essa logica dentro do sockets.on('connection', ...) para outros comandos! como um comando do admin-client mudando uma variavel ou um client normal querendo mandar alguma informacao para o server
         Aluno.findOne({sockid: socket.id})
             .then((ll) => {console.log(ll['147'])}) //'se o player ja estiver conectado esse ll sera o Schema dele, pronto para ser tratado'
@@ -74,8 +94,8 @@ server.listen(3000, () => {
 let admid = "31415926"
 socketsadm.on('connection', (socket) => { //conversa do server com o client do ADM
     let auten = 0
-    const playerId = socket.id // a autenticacao deve ocorrer AQUI. Utilizando-se do socket.id para rastrear momentaneamente qual jogador esta conetado nesse socket especifico, logo conversar direto com o banco de dados e dar autoricao para manter a conexcap
-    console.log(`> Player connected: ${playerId}`)
+ // a autenticacao deve ocorrer AQUI. Utilizando-se do socket.id para rastrear momentaneamente qual jogador esta conetado nesse socket especifico, logo conversar direto com o banco de dados e dar autoricao para manter a conexcap
+    console.log(`> Player connected: ${socket.id}`)
 
 
     socket.on('disconnect', () => {
@@ -83,7 +103,7 @@ socketsadm.on('connection', (socket) => { //conversa do server com o client do A
             admid = "31415926"
         }
         // colocar um if aqui q checa tds os socket.id(s) q desconetarem e se for o socket do ADM tirar as permissoes de ADM relacionadas nesse socket
-        console.log(`> Player disconnected: ${playerId}`)
+        console.log(`> Player disconnected: ${socket.id}`)
     })
     socket.on('login-adm', (creden) => { 
         if(creden[0] == "elefantiase" && creden[1] == "GVcodeRULES"){

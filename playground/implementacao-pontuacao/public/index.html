@@ -4,38 +4,210 @@
         <title></title>
 
         <style>
+            table, td {
+            
+  border: 2px solid black;
+
+}
             body {
                 margin: 40px 0 0 0;
                 padding: 0;
                 background-color: #EEE;
                 text-align: center;
+                
+            }
+            
+            #valorx {
+                position: absolute;
+                top: 25px;
+                left: 300px;
+            }
+            #cx {
+                position: absolute;
+                top: 50px;
+                left: 300px;
+            }
+            #fx {
+                position: absolute;
+                top: 75px;
+                left: 300px;
+            }
+            #ck {
+                position: absolute;
+                top: 100px;
+                left: 300px;
+
+            }
+            #fk {
+                position: absolute;
+                top: 125px;
+                left: 300px;
+            }
+            #usuario {
+                position: absolute;
+                top: 150px;
+                left: 300px;
+            }
+            #senha {
+                position: absolute;
+                top: 175px;
+                left: 300px;
+            }
+            #bsenha { 
+                position: absolute;
+                top: 200px;
+                left: 300px;
+            }
+            #valory {
+                position: absolute;
+                top: 225px;
+                left: 300px;
+            }
+            #by {
+                position: absolute;
+                top: 250px;
+                left: 300px;
             }
 
            </style>
+           <table id="myTable">
+            <tr>
+              <td>Servicos</td>
+              <td>Insumos</td>
+              <td>Propaganda</td>
+            </tr>
+            <tr>
+                <td>null</td>
+                <td>null</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>null</td>
+                <td>null</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>null</td>
+                <td>null</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>null</td>
+                <td>null</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>null</td>
+                <td>null</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>null</td>
+                <td>null</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>null</td>
+                <td>null</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>null</td>
+                <td>null</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>null</td>
+                <td>null</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>null</td>
+                <td>null</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>null</td>
+                <td>nll</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>null</td>
+                <td>nll</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>null</td>
+                <td>nll</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>null</td>
+                <td>nll</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>null</td>
+                <td>nll</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>null</td>
+                <td>nll</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>null</td>
+                <td>nll</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>null</td>
+                <td>nll</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>null</td>
+                <td>nll</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>null</td>
+                <td>nll</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>null</td>
+                <td>nll</td>
+                <td>null</td>
+            </tr>
+          </table>
+          
+          
         <div>
             <input type="text" value="X" id="valorx"><br>
-            <button type="button" onclick="eventox()">Emite um socket com o valor X para o server</button><br>
-            <button type="button" onclick="parareventox()">Parar evento X</button>
+            <button type="button" id="cx" onclick="eventox()">Emite um socket com o valor X para o server</button><br>
+            <button type="button" id="fx" onclick="pedirtabela()">Puxar servicos do server</button>
         </div> 
-        <br></br>
+    
 
         <br>
         <div>
-            <button type="button" onclick="eventok()">Comecar evento K</button><br>
-            <button type="button" onclick="parareventok()">Parar evento K</button><br>
+            <button type="button" id="ck" onclick="eventok()">Comecar evento K</button><br>
+            <button type="button" id="fk" onclick="parareventok()">Parar evento K</button><br>
         </div>
-<br></br>
+
         <br>
         <div>
             <input type="text" value="USUARIO" id="usuario"><br>
             <input type="text" value="SENHA" id="senha"><br>
-            <button type="button" onclick="login()">Clique para fazer login</button><br>
+            <button type="button" id="bsenha" onclick="login()">Clique para fazer login</button><br>
         </div>
-<br></br>
-        <br>
+
+    
         <div>
-            <input type="text" value="coloque um valor Y" id="valory"><br>
-            <button type="button" onclick="sety()">Enviar Y para o server</button><br>
+            <input type="text" value="coloque um valor Y" id="valory">
+            <button type="button" id="by" onclick="sety()">Enviar Y para o server</button>
         </div> 
 
     </div>
@@ -45,6 +217,35 @@
     <body>
 
         <script>
+            let duplo = 0
+            function tabela(dados) {
+            var table = document.getElementById("myTable");
+            //var row = table.insertRow(0);
+            while(duplo == 0){
+            for(let i = 0; i < dados.length; i++){
+                
+                table.rows[i+1].cells[0].innerHTML = dados[i][0];
+                table.rows[i+1].cells[1].innerHTML = dados[i][1];
+                table.rows[i+1].cells[2].innerHTML = dados[i][2];
+                table.rows[i+1].cells[0].addEventListener('click', function(i){
+                    alert(i +" fazer algo")
+            })
+                table.rows[i+1].cells[1].addEventListener('click', function(i){
+                    alert(i+ " fazer outro algo")
+            })  
+                table.rows[i+1].cells[2].addEventListener('click', function(i){
+                    alert(i+ " fzer mais algum algo")
+            })
+                
+            }
+            duplo = duplo + 1
+        }
+            
+            
+}
+
+
+
             //se o <script n estiver com o type="module" o index.html fica incapaz de puxar os dados dos imports requisitados
         
             const socket = io()
@@ -64,6 +265,12 @@
                 //console.log('Unsubscribing All')
                 //keyboardListener.unsubscribeAll();
             })
+            socket.on('dados-servicos', (dados) => {
+                tabela(dados)
+            })
+            function pedirtabela() {
+                socket.emit('pedindo-dados-servico')
+            }
 
             socket.on('setup', (state) => {
                 
