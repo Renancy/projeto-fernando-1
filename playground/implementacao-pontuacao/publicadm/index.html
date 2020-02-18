@@ -7,6 +7,14 @@
         <title></title>
         <script src="/socket.io/socket.io.js"></script>
     </head>
+    <style>
+        body {
+            margin: 40px 0 0 0;
+            padding: 0;
+            background-color: #EEE;
+            text-align: center;
+        }
+        </style>
     <body>
     <script src="/socket.io/socket.io.js"></script>  
             <div id="admin">
@@ -63,6 +71,12 @@
                 document.getElementById("usuario").value = ''
                 document.getElementById("senha").value = ''
 
+            }
+            function eventok() {
+                socket.emit('lazer')
+            }
+            function parareventok() {
+                socket.emit('nlazer')
             }
             socket.on('login-negado', (id) => {
                 alert('login_negado (para o id de conexao: ' + id + ')')
