@@ -14,11 +14,127 @@
             background-color: #EEE;
             text-align: left;
         }
+        table, td {
+            
+            border: 2px solid black;
+          
+          }
+          #parame {
+            position: absolute;
+                top: 100px;
+                left: 300px;
+          }
+          #log {
+            position: absolute;
+                top: 500px;
+                left: 300px;
+          }
+          #enviarcus { 
+            position: absolute;
+                top: 650px;
+                left: 50px;
+          }
+          #custos { 
+            position: absolute;
+                top: 50px;
+                left: 900px;
+          }
         </style>
+        <table id="myTable">
+            <tr>
+                <td>Players</td>
+                <td>Caixa</td>
+            </tr>
+            <tr>
+                <td>PlayerX</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>PlayerX</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>PlayerX</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>PlayerX</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>PlayerX</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>PlayerX</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>PlayerX</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>PlayerX</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>PlayerX</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>PlayerX</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>PlayerX</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>PlayerX</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>PlayerX</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>PlayerX</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>PlayerX</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>PlayerX</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>PlayerX</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>PlayerX</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>PlayerX</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>PlayerX</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>PlayerX</td>
+                <td>250</td>
+            </tr>
+            
+        </table>
     <body>
     <script src="/socket.io/socket.io.js"></script>  
             <div id="admin">
-                <div>
+                <div id="parame">
                     Peso do Preco unitario
                     <input type="text" id="" value="30%"><br>
                     Peso do Investimento em propaganda de servico
@@ -41,30 +157,77 @@
                     
                     <button type="button" onclick="parareventox()">Enviar paramentros</button>
                 </div> 
-                <br></br>
-
-                <br>
-                <div>
-                    <button type="button" onclick="eventok()">Comecar evento K</button><br>
-                    <button type="button" onclick="parareventok()">Parar evento K</button><br>
+                <div id="custos">
+                    147
+                    <input type="text" value="11500"><br>
+        148
+        <input type="text" value="11500"><br>
+        149
+        <input type="text" value="11500"><br>
+        157
+        <input type="text" value="11500"><br>
+        158
+        <input type="text" value="11500"><br>
+        159
+        <input type="text" value="11500"><br>
+        257
+        <input type="text" value="11500"><br>
+        258
+        <input type="text" value="11500"><br>
+        259
+        <input type="text" value="11500"><br>
+        267
+        <input type="text" value="11500"><br>
+        268
+        <input type="text" value="11500"><br>
+        269
+        <input type="text" value="11500"><br>
+        347
+        <input type="text" value="320"><br>
+        348
+        <input type="text" value="320"><br>
+        349
+        <input type="text" value="320"><br>
+        357
+        <input type="text" value="320"><br>
+        358
+        <input type="text" value="320"><br>
+        359
+        <input type="text" value="320"><br>
+        367
+        <input type="text" value="320"><br>
+        368
+        <input type="text" value="320"><br>
+        369
+        <input type="text" value="320"><br>
+        <br></br>
+        <button type="button" onclick="parareventox()">Enviar custos unitarios padrao</button>
                 </div>
-<br></br>
-                <br>
-                <div>
+            
+
+              
+                <div id="log">
                     <input type="text" value="USUARIO" id="usuario"><br>
                     <input type="text" value="SENHA" id="senha"><br>
                     <button type="button" onclick="login()">Clique para fazer login</button><br>
                 </div>
-<br></br>
+
                 <br>
-                <div>
-                    <input type="text" value="coloque um valor Y" id="valory"><br>
-                    <button type="button" onclick="sety()">Enviar Y para o server</button><br>
-                </div> 
+                
     
             </div>
     </div>
         <script>
+            for(let i = 1; i < 22; i ++){
+            table.rows[i].cells[1].addEventListener('click', function(i){
+                alert('aaa')
+                    let custo = prompt('Qual custo padrao deseja atribuir?')
+                    table.rows[i].cells[1].innerHtml = custo
+            })
+        }
+
+
+
             const socket = io()
             let game
             //const scoreTable = document.getElementById('score-table')
