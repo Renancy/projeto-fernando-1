@@ -43,7 +43,35 @@ sockets.on('connection', (socket) => { //conversa do server com os clients(n ADM
                                 else{
                                     Aluno.findOneAndUpdate({ _id: user._id}, { sockid: socket.id })
                                         .then((zz) => { 
-                                            socket.emit('login-aprovado', creden[0]) })
+                                            socket.emit('login-aprovado', creden[0]) 
+                                            socket.emit('dados-servicos', [user["147"],
+                user["148"],
+                user["149"],
+                user["157"],
+                user["158"],
+                user["159"],
+                user["257"],
+                user["258"],
+                user["259"],
+                user["267"],
+                user["268"],
+                user["269"],
+                user["347"],
+                user["348"],
+                user["349"],
+                user["357"],
+                user["358"],
+                user["359"],
+                user["367"],
+                user["368"],
+                user["369"],
+                user["taokeys"],
+                user["frota"],
+                user["promotores"],
+                user["comissao"],
+                user["distribuidores"],
+                user["pas"]])
+                                        })
                             }})}
             })
 
@@ -72,7 +100,13 @@ sockets.on('connection', (socket) => { //conversa do server com os clients(n ADM
                 user["359"],
                 user["367"],
                 user["368"],
-                user["369"]])
+                user["369"],
+                user["taokeys"],
+                user["frota"],
+                user["promotores"],
+                user["comissao"],
+                user["distribuidores"],
+                user["pas"]])
                 
             )
             .then(()=>{console.log('aaaaahh')})
@@ -129,6 +163,7 @@ socketsadm.on('connection', (socket) => { //conversa do server com o client do A
             socket.emit('acesso-negado', socket.id)
         }
         
+        
     })
     socket.on('mudar-SELIC-adm', (valor) => {
         if(auten == 1){
@@ -147,7 +182,7 @@ serveradm.listen(5000, () => {
 //INTERACAO COM O BANCO DE DAOS \/
 
 
-        let pedro = new Aluno({ sockid: '123456', cooperativa: '3irmas', senha: '666', 147:[945,1],
+        let pedro = new Aluno({ sockid: '123456', taokeys: '18720000', comissao: '15%', frota: '10', cooperativa: '3irmas', pas: '25', distribuidores: '500', promotores: '350', senha: '666', 147:[945,1],
         159:[0,0],
         149:[0,0],
         148:[0,0],
@@ -175,8 +210,8 @@ serveradm.listen(5000, () => {
         //mongoose.connection.collections.alunos.drop()
         //pedro.save()
         //    .then(Aluno.find({ nome: 'Pedo'}))
-            //.then((pessoa) => {console.log(pessoa)})
-         //   .catch(() => {console.log('eerro')})
+        //    .then((pessoa) => {console.log(pessoa)})
+        //    .catch(() => {console.log('eerro')})
             
           //  pedro.save(() => {
           //      Aluno.findOne({ nome: 'Pedro'})
@@ -184,7 +219,11 @@ serveradm.listen(5000, () => {
           //          
           //  })
             //Aluno.updateOne({ nome: 'Pedro'}, { 257: [0,1]})
-    
-
+          /*  Aluno.findOne({ sockid: socket.id})
+                .then((user) => { if(user.taokeys > x*custo){
+                    Aluno.updateOne({sockid: socket.id},{ taokeys: user.taokeys - x*custo})
+                }})
+                .catch(() => )
+                */
             //
     
