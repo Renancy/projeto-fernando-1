@@ -140,7 +140,9 @@ socketsadm.on('connection', (socket) => { //conversa do server com o client do A
         console.log(`> Player disconnected: ${socket.id}`)
     })
     socket.on('login-adm', (creden) => { 
+        console.log('putz')
         if(creden[0] == "elefantiase" && creden[1] == "GVcodeRULES"){
+            socket.emit('login-aprovado')
             admid = socket.id // esse auten = 1 talvez seja valido para tds que se conectarem a porta 5000, logo necessita-se conveesa com o banco de dados para esse verificacao
         }
         else if(socket.id == admid){

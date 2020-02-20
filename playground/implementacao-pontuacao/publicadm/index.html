@@ -218,16 +218,6 @@
             </div>
     </div>
         <script>
-            for(let i = 1; i < 22; i ++){
-            table.rows[i].cells[1].addEventListener('click', function(i){
-                alert('aaa')
-                    let custo = prompt('Qual custo padrao deseja atribuir?')
-                    table.rows[i].cells[1].innerHtml = custo
-            })
-        }
-
-
-
             const socket = io()
             let game
             //const scoreTable = document.getElementById('score-table')
@@ -261,6 +251,9 @@
             }
             socket.on('login-negado', (id) => {
                 alert('login_negado (para o id de conexao: ' + id + ')')
+            })
+            socket.on('login-aprovado', () => {
+                alert('Login realizado com sucesso')
             })
             socket.on('acesso-negado', (id) => {
                 alert('acesso negado (para o id de conexao: ' + id + ') FACA LOGIN!')
