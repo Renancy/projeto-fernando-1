@@ -45,12 +45,12 @@
             }
             #usuario {
                 position: absolute;
-                top: 675px;
+                top: 650px;
                 left: 550px;
             }
             #senha {
                 position: absolute;
-                top: 650px;
+                top: 675px;
                 left: 550px;
             }
             #bsenha { 
@@ -273,8 +273,8 @@
             <button type="button" id="by" onclick="sety()">Pesquisar a participacao de um ou dois modelos de servico</button>
         </div> 
         <div>
-            <input type="text" value="USUARIO" id="usuario">
-            <input type="text" value="SENHA" id="senha">
+            <input type="text" value="3irmas" id="usuario">
+            <input type="text" value="666" id="senha">
             <button type="button" id="bsenha" onclick="login()">Clique para fazer login</button>
         </div>
         <button type="button" id="bsend" onclick="send()">Clique aqui para finalizar suas escolhas do turno</button>
@@ -287,15 +287,43 @@
 
         <script>
             let duplo = 0
+            function update(dados) {
+                var table = document.getElementById("myTable");
+                for(let i = 0; i < dados.length - 6; i++){
+                
+                table.rows[i+1].cells[1].innerHTML = dados[i][0]; // injeta o numero de insumos de cada servico na tabela do client
+                table.rows[i+1].cells[2].innerHTML = dados[i][2]; // msm coisa /\ so q injeta os custos unitarios
+                table.rows[i+1].cells[3].innerHTML = dados[i][0]*dados[i][2];
+                if(dados[i][1] == 1){
+                    table.rows[i+1].cells[0].style.backgroundColor = "green";
+
+                }
+            }
+            table.rows[23].cells[0].innerHTML = dados[21] //taokeys
+            table.rows[22].cells[0].style.backgroundColor = "gray"
+            table.rows[25].cells[0].innerHTML = dados[24] //comissao
+            table.rows[24].cells[0].style.backgroundColor = "gray"
+            table.rows[25].cells[3].innerHTML = dados[26] //pas
+            table.rows[24].cells[3].style.backgroundColor = "gray"
+            table.rows[23].cells[1].innerHTML = dados[22] //frota
+            table.rows[22].cells[1].style.backgroundColor = "gray"
+            table.rows[25].cells[1].innerHTML = dados[25] //distribuidores
+            table.rows[24].cells[1].style.backgroundColor = "gray"
+            table.rows[23].cells[2].innerHTML = dados[23] //promotores
+            table.rows[22].cells[2].style.backgroundColor = "gray"
+        }
             function tabela(dados) {
             var table = document.getElementById("myTable");
             //var row = table.insertRow(0);
             while(duplo == 0){
             for(let i = 0; i < dados.length - 6; i++){
                 
-                table.rows[i+1].cells[1].innerHTML = dados[i][0];
+                table.rows[i+1].cells[1].innerHTML = dados[i][0]; // injeta o numero de insumos de cada servico na tabela do client
+                table.rows[i+1].cells[2].innerHTML = dados[i][2]; // msm coisa /\ so q injeta os custos unitarios
+                table.rows[i+1].cells[3].innerHTML = dados[i][0]*dados[i][2];
                 if(dados[i][1] == 1){
                     table.rows[i+1].cells[0].style.backgroundColor = "green";
+
                 }
                 //table.rows[i+1].cells[2].innerHTML = dados[i][1];
                 //table.rows[i+1].cells[2].innerHTML = dados[i][2];
@@ -308,19 +336,22 @@
                 table.rows[i+1].cells[2].addEventListener('click', function(i){
                     alert(i+ " fzer mais algum algo")
             })
+                table.rows[i+1].cells[4].addEventListener('click', function(i){
+                    alert(i+ " fzer mais algum algo alem daquilo")
+            })
                 
             }
-            table.rows[23].cells[0].innerHTML = dados[21]//
+            table.rows[23].cells[0].innerHTML = dados[21] //taokeys
             table.rows[22].cells[0].style.backgroundColor = "gray"
-            table.rows[25].cells[0].innerHTML = dados[24]//
+            table.rows[25].cells[0].innerHTML = dados[24] //comissao
             table.rows[24].cells[0].style.backgroundColor = "gray"
-            table.rows[27].cells[0].innerHTML = dados[26]//
-            table.rows[26].cells[0].style.backgroundColor = "gray"
-            table.rows[23].cells[1].innerHTML = dados[22]
+            table.rows[25].cells[3].innerHTML = dados[26] //pas
+            table.rows[24].cells[3].style.backgroundColor = "gray"
+            table.rows[23].cells[1].innerHTML = dados[22] //frota
             table.rows[22].cells[1].style.backgroundColor = "gray"
-            table.rows[25].cells[1].innerHTML = dados[25]
+            table.rows[25].cells[1].innerHTML = dados[25] //distribuidores
             table.rows[24].cells[1].style.backgroundColor = "gray"
-            table.rows[23].cells[2].innerHTML = dados[23]
+            table.rows[23].cells[2].innerHTML = dados[23] //promotores
             table.rows[22].cells[2].style.backgroundColor = "gray"
 
             
@@ -355,6 +386,9 @@
             socket.on('dados-servicos', (dados) => {
                 tabela(dados)
             })
+            socket.on('update', (dados) => {
+                update(dados)
+            })
             function send() {
         alert('Operacao Negada')
     }
@@ -363,6 +397,12 @@
             })
             socket.on('login-negado', (cre) => {
                 alert('login negado para tentativa de conexao com '+cre)
+            })
+            socket.on('operacao-negada', (motivo) => {
+                alert('Operacao negada por ' + motivo)
+            })
+            socket.on('resposta-pesquisar-pas', () =>{
+                alert('resultado: x')
             })
             socket.on('acesso-negado', () => {
                 alert('Realize login para efetuar essa operacao')
@@ -378,7 +418,7 @@
                 socket.emit('alterar-porcetagem-comissao', 43)
                 }
             function eventok() {
-                socket.emit('alterar-porcetagem-comissao', 43)
+                socket.emit('pesquisar-pas', 43)
             }
             function parareventok() {
                 socket.emit('alterar-porcetagem-comissao', 43)

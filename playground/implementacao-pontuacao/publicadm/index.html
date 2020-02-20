@@ -244,7 +244,7 @@
 
             }
             function eventok() {
-                socket.emit('lazer')
+                socket.emit('inicar-turno')
             }
             function parareventok() {
                 socket.emit('nlazer')
@@ -266,105 +266,6 @@
                 console.log('> Disconnected')
                 
             })
-            /*
-            socket.on('player-update', (player) => {
-                game.players[player.socketId] = player.newState
-            })
-
-            socket.on('update-player-score', (score) => {
-                game.players[socket.id].score = score
-                updateScoreTable()
-            })
-
-            socket.on('player-remove', (socketId) => {
-                delete game.players[socketId]
-            })
-
-            socket.on('fruit-add', (fruit) => {
-                game.fruits[fruit.fruitId] = {
-                    x: fruit.x,
-                    y: fruit.y
-                }
-            })
-
-            socket.on('fruit-remove', ({fruitId, score}) => {
-                delete game.fruits[fruitId]
-                multipleOf100Remainder = score % 100
-
-                if (multipleOf100Remainder !== 0) {
-                    collectFruitAudio.pause()
-                    collectFruitAudio.currentTime = 0
-                    collectFruitAudio.play().catch(console.log)
-                }
-
-                if (multipleOf100Remainder === 0 && score !== 0) {
-                    collectFruitAudio.pause()
-                    collect100FruitAudio.pause()
-                    collect100FruitAudio.currentTime = 0
-                    collect100FruitAudio.play().catch(console.log)
-                }
-
-                updateScoreTable()
-            })
-
-            socket.on('concurrent-connections', (concurrentConnections) => {
-                totalPlayersCount = concurrentConnections
-                updateScoreTable()
-            })
-
-            let crazyModeInterval
-            socket.on('start-crazy-mode', () => {
-                crazyModeInterval = setInterval(() => {
-                    const randomKey = 37 + Math.floor(Math.random()*4)
-                    console.log(randomKey)
-                    const event = new KeyboardEvent('keydown', {
-                        keyCode: randomKey,
-                        which: randomKey
-                    })
-
-                    document.dispatchEvent(event);
-                }, 150)
-            })
-
-            socket.on('stop-crazy-mode', () => {
-                clearInterval(crazyModeInterval)
-            })
-            */
-            //document.addEventListener('keydown', throttledKeydown)
-
-            /* ADMIN */
-
-            /*
-            function eventox() {
-                const interval = document.getElementById('valorx').value
-                console.log(interval)
-                socket.emit('admin-start-fruit-game', interval)
-            }
-
-            function parareventox() {
-                socket.emit('admin-stop-fruit-game')
-            }
-
-            function eventok() {
-                socket.emit('admin-start-crazy-mode')
-            }
-
-            function parareventok() {
-                socket.emit('admin-stop-crazy-mode')
-            }
-
-            function login() {
-                let user = promt('seu usuario:')
-                let senha = prompt('sua senha:')
-                let credenciais = [user, senha]
-                socket.emit('admin-clear-scores', credenciais)
-            }
-
-            function sety() {
-                const maxConcurrentConnections = document.getElementById('valory').value
-                socket.emit('admin-valor-y', maxConcurrentConnections)
-            }
-*/
         </script>
     </body>
 </html>

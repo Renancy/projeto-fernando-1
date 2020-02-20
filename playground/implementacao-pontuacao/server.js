@@ -7,6 +7,7 @@ import { isMainThread } from 'worker_threads'
 import mongoose from 'mongoose'
 import { rejects } from 'assert'
 import { resolve } from 'dns'
+import { access } from 'fs'
 
 mongoose.connect('mongodb://localhost/aluno_teste')
 mongoose.connection
@@ -14,6 +15,7 @@ mongoose.connection
     .on('error', (error) => {
         console.warn('Warning', error)
     })
+//mongoose.set('useFindAndModify', false);
 
 const app = express()
 const appadm = express()
@@ -21,6 +23,8 @@ const server = http.createServer(app)
 const serveradm = http.createServer(appadm)
 const sockets = socketio(server)
 const socketsadm = socketio(serveradm)
+
+let pesquisas = []
 
 app.use(express.static('public'))
 appadm.use(express.static('publicadm'))
@@ -32,7 +36,7 @@ sockets.on('connection', (socket) => { //conversa do server com os clients(n ADM
         console.log(`> Player disconnected: ${socket.id}`)
     })
     socket.on('login-client', (creden) => {
-        Aluno.findOne({sockid: socket.id})
+        Aluno.findOne({sockid: socket.id}) // se n achar retorna Null e se vc tentar fazer essa pesquisa com um String sendo q no Schema ta como Number vai ir pro Catch ou vai pro Catch tb se n conseguir se conectar com o MongoDB
             .then((ll) => {
                 if(ll !== null){socket.emit('ja-conectado', socket.id)}
                 else{
@@ -72,15 +76,30 @@ sockets.on('connection', (socket) => { //conversa do server com os clients(n ADM
                 user["distribuidores"],
                 user["pas"]])
                                         })
-                            }})}
+                                        .catch(() => console.log('falha ao registrar login do player com socket: ' + socket.id))
+                            }})
+                        .catch(() => {console.log('falha na comunicacao com o Banco de dados n 403 ' + socket.id)})
+                        }
             })
+            .catch(() => {console.log('falha na comunicacao com o Banco de dados n 504 ' +socket.id)})
 
                        
     })
-
-    socket.on('pedindo-dados-servico', () => {
-        Aluno.findOne({ sockid: socket.id})
-            .then((user) => socket.emit('dados-servicos', [user["147"],
+    socket.on('pesquisar-pas', () => {
+        Aluno.findOne({sockid: socket.id})
+            .then((userx) => { 
+                    if(userx !== null){
+                        //console.log(user.taokeys + ' ccccccccccccccc');
+                        if(userx['taokeys'] >= 2160){
+                           //console.log(user.taokeys + " <====")
+                           userx.taokeys = userx.taokeys - 2160
+                           //console.log(user.taokeys)
+                           userx.save()
+                            .then(() => {Aluno.findOne({ _id: userx._id})
+                                            .then((user) => {if(user.taokeys == userx.taokeys){
+                                                console.log(user.taokeys + ' <----')
+                                                console.log(user + ' <=====')
+                                                socket.emit('update', [user["147"],
                 user["148"],
                 user["149"],
                 user["157"],
@@ -106,12 +125,29 @@ sockets.on('connection', (socket) => { //conversa do server com os clients(n ADM
                 user["promotores"],
                 user["comissao"],
                 user["distribuidores"],
-                user["pas"]])
-                
-            )
-            .then(()=>{console.log('aaaaahh')})
-            .catch(() => {socket.emit('acesso-negado')})
+                user["pas"]]);
+                socket.emit('resposta-pesquisar-pas');
+                                            }                  
+                                        })
+                                            .catch(() => {console.log('erro na confirmacao n 302')})
+                                    })
+                            .catch(() => {console.log('falha em salvar salvar transacao por pesquisa n 307')})
+                            }
+
+                        else{
+                            socket.emit('operacao-negada', 'falta caixa');
+                            //console.log('hlu')
+                    }
+                    //console.log(user.taokeys)
+                    }
+                    else{
+                        socket.emit('acesso-negado')
+                    }
+            }) 
+            .catch(() => { console.log('falha na comunicacao com o banco de dados para o ' +socket.id)
     })
+    })
+
 
     socket.on('alterar-porcetagem-comissao', () => { //continuar essa logica dentro do sockets.on('connection', ...) para outros comandos! como um comando do admin-client mudando uma variavel ou um client normal querendo mandar alguma informacao para o server
         Aluno.findOne({sockid: socket.id})
@@ -153,6 +189,83 @@ socketsadm.on('connection', (socket) => { //conversa do server com o client do A
         }
         
     })
+    socket.on('inicar-turno', () => {
+        Aluno.find({ativo: 1})
+            .then((users) => {
+                let npas = 0;
+                let ndistri = 0;
+                let s147,
+                s159,
+                s149,
+                s148,
+                s158,
+                s157,
+                s257,
+                s258,
+                s259,
+                s267,
+                s268,
+                s269,
+                s347,
+                s348,
+                s349,
+                s357,
+                s358,
+                s359,
+                s367,
+                s368,
+                s369
+                for(let i = 0; i < users.length; i++){
+        s147 = s147 + users[i]['147'][1];
+        s159 = s159 + users[i]['159'][1];
+        s149 = s149 + users[i]['149'][1];
+        s148 = s148 + users[i]['148'][1];
+        s158 = s158 + users[i]['158'][1];
+        s157 = s157 + users[i]['157'][1];
+        s257 = s257 + users[i]['257'][1];
+        s258 = s258 + users[i]['258'][1];
+        s259 = s259 + users[i]['259'][1];
+        s267 = s267 + users[i]['267'][1];
+        s268 = s268 + users[i]['268'][1];
+        s269 = s269 + users[i]['269'][1];
+        s347 = s347 + users[i]['347'][1];
+        s348 = s348 + users[i]['348'][1];
+        s349 = s349 + users[i]['349'][1];
+        s357 = s357 + users[i]['357'][1];
+        s358 = s358 + users[i]['358'][1];
+        s359 = s359 + users[i]['359'][1];
+        s367 = s367 + users[i]['367'][1];
+        s368 = s368 + users[i]['368'][1];
+        s369 = s369  + user[i]['369'][1]
+       
+
+            }
+        let servicos = [s147,
+            s159,
+            s149,
+            s148,
+            s158,
+            s157,
+            s257,
+            s258,
+            s259,
+            s267,
+            s268,
+            s269,
+            s347,
+            s348,
+            s349,
+            s357,
+            s358,
+            s359,
+            s367,
+            s368,
+            s369]
+            pesquisas.push(servicos)
+            console.log(servicos)
+        })
+            .catch(()=> {console.log('falha na comunicacao com o banco de dados n 309')})
+    })
     socket.on('mudar-dolar-adm', (valor) => {
         console.log("valor_de_mudar_dolar_adm: " + valor)
         if(socket.id == admid){
@@ -184,38 +297,39 @@ serveradm.listen(5000, () => {
 //INTERACAO COM O BANCO DE DAOS \/
 
 
-        let pedro = new Aluno({ sockid: '123456', taokeys: '18720000', comissao: '15%', frota: '10', cooperativa: '3irmas', pas: '25', distribuidores: '500', promotores: '350', senha: '666', 147:[945,1],
-        159:[0,0],
-        149:[0,0],
-        148:[0,0],
-        158:[0,0],
-        157:[0,0],
-        257:[0,0],
-        258:[0,0],
-        259:[0,0],
-        267:[0,0],
-        268:[0,0],
-        269:[0,0],
-        347:[0,0],
-        348:[0,0],
-        349:[0,0],
-        357:[0,0],
-        358:[0,0],
-        359:[0,0],
-        367:[0,0],
-        368:[0,0],
-        369:[0,0]});
-        //pedro.save()
+        let jogador = new Aluno({ sockid: 123456, ativo: 1, taokeys: 18720000, comissao: 0.25, frota: 10, cooperativa: '3irmas', pas: 25, distribuidores: 500, promotores: 350, senha: '666', 
+        147:[945,1, 288],
+        159:[0,0, 396],
+        149:[0,0, 360],
+        148:[0,0,324],
+        158:[0,0,360],
+        157:[0,0, 324],
+        257:[0,0,396],
+        258:[0,0,432],
+        259:[0,0,468],
+        267:[0,0,432],
+        268:[0,0,468],
+        269:[0,0,504],
+        347:[0,0,432],
+        348:[0,0,468],
+        349:[0,0,504],
+        357:[0,0,468],
+        358:[0,0,504],
+        359:[0,0,540],
+        367:[0,0,504],
+        368:[0,0,540],
+        369:[0,0,576]});
+        //jogador.save()
         //    .then(Aluno.find({ nome: 'Pedro'}))
          //   .then((users) => {console.log(users)})
             //.catch(() => {console.log('erros')})
         //mongoose.connection.collections.alunos.drop()
-        //pedro.save()
+        //jogador.save()
         //    .then(Aluno.find({ nome: 'Pedo'}))
         //    .then((pessoa) => {console.log(pessoa)})
         //    .catch(() => {console.log('eerro')})
             
-          //  pedro.save(() => {
+          //  jogador.save(() => {
           //      Aluno.findOne({ nome: 'Pedro'})
           //          .then((array) => {console.log(array)})
           //          
