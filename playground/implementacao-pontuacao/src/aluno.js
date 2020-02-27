@@ -15,6 +15,7 @@ const UserSchema = new Schema({
     faturamento: Number,
     propaganda: Number,
     scoremod: Number,
+    scorepreco: Number,
         147:Array,
         148:Array,
         149:Array,
