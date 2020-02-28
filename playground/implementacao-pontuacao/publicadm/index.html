@@ -156,7 +156,9 @@
 
                     
                     <button type="button" onclick="parareventox()">Enviar paramentros</button>
-                </div> 
+                </div>
+                <button type="button" id="initur" onclick="eventok()">Iniciar turno</button>
+                <button type="button" id="fintur" onclick="eventop()">Finalizar turno</button>  
                 <div id="custos">
                     147
                     <input type="text" value="11500"><br>
@@ -245,6 +247,9 @@
             }
             function eventok() {
                 socket.emit('inicar-turno')
+            }
+            function eventop() {
+                socket.emit('finalizar-turno')
             }
             function parareventok() {
                 socket.emit('nlazer')

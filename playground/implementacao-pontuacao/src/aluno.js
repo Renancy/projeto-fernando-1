@@ -15,6 +15,11 @@ const UserSchema = new Schema({
     comissao: Number,
     pas: Number,
     ativo: Number,
+    faturamento: Number,
+    propaganda: Number,
+    scoremod: Number,
+    scorepreco: Number,
+    scorepro: Number,
         147:Array,
         148:Array,
         149:Array,
@@ -36,8 +41,20 @@ const UserSchema = new Schema({
         367:Array,
         368:Array,
         369:Array
+});
+
+const DataSchema = new Schema({
+    modelos_oferecidos: Array,
+    total_pas: Number,
+    oferta_mercado: Number,
+    total_distribuidores: Number
+
+
 })
 
 const Aluno = mongoose.model('aluno', UserSchema)
 
 module.exports = Aluno
+const Data = mongoose.model('data', DataSchema)
+let estrutura  = [Aluno, Data]
+module.exports = estrutura
