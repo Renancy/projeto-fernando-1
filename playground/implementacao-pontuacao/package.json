@@ -1,21 +1,29 @@
 {
   "name": "1st-release-com-teleporte",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "main": "server.mjs",
   "type": "module",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "nodemon server.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "GV Code",
   "license": "ISC",
   "dependencies": {
+    "core-util-is": "^1.0.2",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
+    "import": "0.0.6",
     "mocha": "^7.0.1",
     "mongoose": "^5.9.1",
     "node": "^13.8.0",
     "nodemon": "^2.0.2",
     "socket.io": "^2.3.0"
-  }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/register": "^7.8.3"
+  },
+  "description": ""
 }

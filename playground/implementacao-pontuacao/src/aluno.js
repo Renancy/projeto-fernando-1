@@ -1,4 +1,7 @@
-import mongoose from 'mongoose'
+require = require("esm")(module /*, options*/);
+
+const mongoose = require('mongoose');
+
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
@@ -37,4 +40,4 @@ const UserSchema = new Schema({
 
 const Aluno = mongoose.model('aluno', UserSchema)
 
-export default Aluno
+module.exports = Aluno

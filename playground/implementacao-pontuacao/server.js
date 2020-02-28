@@ -1,15 +1,16 @@
-import express from 'express'
-import http from 'http'
+require = require("esm")(module /*, options*/);
+const express = require('express');
+const app = express();
+const http = require('http')
 //import createGame from './public/game.js'
-import socketio from 'socket.io'
-import Aluno from './src/aluno.js'
-import { isMainThread } from 'worker_threads'
-import mongoose from 'mongoose'
-import { rejects } from 'assert'
-import { resolve } from 'dns'
-import { access } from 'fs'
+const  socketio = require('socket.io')
+const Aluno = require('./src/aluno.js')
+const { isMainThread } =require('worker_threads')
+const mongoose =require('mongoose')
+const { rejects } =require('assert')
+const { resolve } =require('dns')
 
-mongoose.connect('mongodb://localhost/aluno_teste')
+mongoose.connect('mongodb://localhost/')
 mongoose.connection
     .once('open', () => console.log('conexao com Mongo(banco de dados) foi estabelecida'))
     .on('error', (error) => {
@@ -17,7 +18,7 @@ mongoose.connection
     })
 //mongoose.set('useFindAndModify', false);
 
-const app = express()
+
 const appadm = express()
 const server = http.createServer(app)
 const serveradm = http.createServer(appadm)
@@ -319,7 +320,7 @@ serveradm.listen(5000, () => {
         367:[0,0,504],
         368:[0,0,540],
         369:[0,0,576]});
-        //jogador.save()
+        jogador.save()
         //    .then(Aluno.find({ nome: 'Pedro'}))
          //   .then((users) => {console.log(users)})
             //.catch(() => {console.log('erros')})
