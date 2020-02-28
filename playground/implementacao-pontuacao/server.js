@@ -6,9 +6,9 @@ import estrutura from './src/aluno.js'
 const Aluno = estrutura[0]
 const Data = estrutura[1]
 
-import { isMainThread } from 'worker_threads'
+//import { isMainThread } from 'worker_threads'
 import mongoose from 'mongoose'
-import { createCipher } from 'crypto'
+//import { createCipher } from 'crypto'
 
 mongoose.connect('mongodb://localhost/aluno_teste')
 mongoose.connection
@@ -220,147 +220,147 @@ socketsadm.on('connection', (socket) => { //conversa do server com o client do A
                         for(let k = 0; k < users.length; k++){
                             c = c + users[k]['147'][3]
                         }
-                        scorep = scorep + users[i]['147'][3]/c
+                        users[i]['scorepro'] = users[i]['scorepro'] + users[i]['147'][3]/c
                     }
                     if(users[i]['148'][3] > 0){
                         let c = 0;
                         for(let k = 0; k < users.length; k++){
                             c = c + users[k]['148'][3]
                         }
-                        scorep = scorep + users[i]['148'][3]/c
+                        users[i]['scorepro'] = users[i]['scorepro'] + users[i]['148'][3]/c
                     }
                     if(users[i]['149'][3] > 0){
                         let c = 0;
                         for(let k = 0; k < users.length; k++){
                             c = c + users[k]['149'][3]
                         }
-                        scorep = scorep + users[i]['149'][3]/c
+                        users[i]['scorepro'] = users[i]['scorepro'] + users[i]['149'][3]/c
                     }
                     if(users[i]['157'][3] > 0){
                         let c = 0;
                         for(let k = 0; k < users.length; k++){
                             c = c + users[k]['157'][3]
                         }
-                        scorep = scorep + users[i]['157'][3]/c
+                        users[i]['scorepro'] = users[i]['scorepro'] + users[i]['157'][3]/c
                     }
                     if(users[i]['158'][3] > 0){
                         let c = 0;
                         for(let k = 0; k < users.length; k++){
                             c = c + users[k]['158'][3]
                         }
-                        scorep = scorep + users[i]['158'][3]/c
+                        users[i]['scorepro'] = users[i]['scorepro'] + users[i]['158'][3]/c
                     }
                     if(users[i]['159'][3] > 0){
                         let c = 0;
                         for(let k = 0; k < users.length; k++){
                             c = c + users[k]['159'][3]
                         }
-                        scorep = scorep + users[i]['159'][3]/c
+                        users[i]['scorepro'] = users[i]['scorepro'] + users[i]['159'][3]/c
                     }
                     if(users[i]['257'][3] > 0){
                         let c = 0;
                         for(let k = 0; k < users.length; k++){
                             c = c + users[k]['257'][3]
                         }
-                        scorep = scorep + users[i]['257'][3]/c
+                        users[i]['scorepro'] = users[i]['scorepro'] + users[i]['257'][3]/c
                     }
                     if(users[i]['258'][3] > 0){
                         let c = 0;
                         for(let k = 0; k < users.length; k++){
                             c = c + users[k]['258'][3]
                         }
-                        scorep = scorep + users[i]['258'][3]/c
+                        users[i]['scorepro'] = users[i]['scorepro'] + users[i]['258'][3]/c
                     }
                     if(users[i]['259'][3] > 0){
                         let c = 0;
                         for(let k = 0; k < users.length; k++){
                             c = c + users[k]['259'][3]
                         }
-                        scorep = scorep + users[i]['259'][3]/c
+                        users[i]['scorepro'] = users[i]['scorepro'] + users[i]['259'][3]/c
                     }
                     if(users[i]['267'][3] > 0){
                         let c = 0;
                         for(let k = 0; k < users.length; k++){
                             c = c + users[k]['267'][3]
                         }
-                        scorep = scorep + users[i]['267'][3]/c
+                        users[i]['scorepro'] = users[i]['scorepro'] + users[i]['267'][3]/c
                     }
                     if(users[i]['268'][3] > 0){
                         let c = 0;
                         for(let k = 0; k < users.length; k++){
                             c = c + users[k]['268'][3]
                         }
-                        scorep = scorep + users[i]['268'][3]/c
+                        users[i]['scorepro'] = users[i]['scorepro'] + users[i]['268'][3]/c
                     }
                     if(users[i]['269'][3] > 0){
                         let c = 0;
                         for(let k = 0; k < users.length; k++){
                             c = c + users[k]['269'][3]
                         }
-                        scorep = scorep + users[i]['269'][3]/c
+                        users[i]['scorepro'] = users[i]['scorepro'] + users[i]['269'][3]/c
                     }
                     if(users[i]['347'][3] > 0){
                         let c = 0;
                         for(let k = 0; k < users.length; k++){
                             c = c + users[k]['347'][3]
                         }
-                        scorep = scorep + users[i]['347'][3]/c
+                        users[i]['scorepro'] = users[i]['scorepro'] + users[i]['347'][3]/c
                     }
                     if(users[i]['348'][3] > 0){
                         let c = 0;
                         for(let k = 0; k < users.length; k++){
                             c = c + users[k]['348'][3]
                         }
-                        scorep = scorep + users[i]['348'][3]/c
+                        users[i]['scorepro'] = users[i]['scorepro'] + users[i]['348'][3]/c
                     }
                     if(users[i]['349'][3] > 0){
                         let c = 0;
                         for(let k = 0; k < users.length; k++){
                             c = c + users[k]['349'][3]
                         }
-                        scorep = scorep + users[i]['349'][3]/c
+                        users[i]['scorepro'] = users[i]['scorepro'] + users[i]['349'][3]/c
                     }
                     if(users[i]['357'][3] > 0){
                         let c = 0;
                         for(let k = 0; k < users.length; k++){
                             c = c + users[k]['357'][3]
                         }
-                        scorep = scorep + users[i]['357'][3]/c
+                        users[i]['scorepro'] = users[i]['scorepro'] + users[i]['357'][3]/c
                     }
                     if(users[i]['358'][3] > 0){
                         let c = 0;
                         for(let k = 0; k < users.length; k++){
                             c = c + users[k]['358'][3]
                         }
-                        scorep = scorep + users[i]['358'][3]/c
+                        users[i]['scorepro'] = users[i]['scorepro'] + users[i]['358'][3]/c
                     }
                     if(users[i]['359'][3] > 0){
                         let c = 0;
                         for(let k = 0; k < users.length; k++){
                             c = c + users[k]['359'][3]
                         }
-                        scorep = scorep + users[i]['359'][3]/c
+                        users[i]['scorepro'] = users[i]['scorepro'] + users[i]['359'][3]/c
                     }
                     if(users[i]['367'][3] > 0){
                         let c = 0;
                         for(let k = 0; k < users.length; k++){
                             c = c + users[k]['367'][3]
                         }
-                        scorep = scorep + users[i]['367'][3]/c
+                        users[i]['scorepro'] = users[i]['scorepro'] + users[i]['367'][3]/c
                     }
                     if(users[i]['368'][3] > 0){
                         let c = 0;
                         for(let k = 0; k < users.length; k++){
                             c = c + users[k]['368'][3]
                         }
-                        scorep = scorep + users[i]['368'][3]/c
+                        users[i]['scorepro'] = users[i]['scorepro'] + users[i]['368'][3]/c
                     }
                     if(users[i]['369'][3] > 0){
                         let c = 0;
                         for(let k = 0; k < users.length; k++){
                             c = c + users[k]['369'][3]
                         }
-                        scorep = scorep + users[i]['369'][3]/c
+                        users[i]['scorepro'] = users[i]['scorepro'] + users[i]['369'][3]/c
                     }
 
 
@@ -515,13 +515,14 @@ socketsadm.on('connection', (socket) => { //conversa do server com o client do A
                 for(let i = 0; i < users.length; i++){
                     scorex = scorex + users[i]['scoremod']
                     scorey = scorey + users[i]['scorepreco']
+                    scorep = scorep + users[i]['scorepro']
                 }
                 for(let i = 0; i < users.length; i++){
 
-                     users[i]['faturamento'] = 0.09*demanda*users[i]['distribuidores']/soma + 0.09*demanda*users[i]['pas']/soma1 + 0.07*demanda*users[i]['promotores']/soma2 + 0.09*demanda*users[i]['comissao']/soma3 + 0.1*demanda*users[i]['propaganda']/soma5 + 0.12*users[i]['scoremod']/scorex + 0.3*users[i]['scorepreco']/scorey
+                     users[i]['faturamento'] = 0.09*demanda*users[i]['distribuidores']/soma + 0.09*demanda*users[i]['pas']/soma1 + 0.07*demanda*users[i]['promotores']/soma2 + 0.09*demanda*users[i]['comissao']/soma3 + 0.1*demanda*users[i]['propaganda']/soma5 + 0.12*demanda*users[i]['scoremod']/scorex + 0.3*demanda*users[i]['scorepreco']/scorey + 0.10*demanda*users[i]['scorepro']/scorep
                      
-                     console.log("Parcela de mercado adquirida para o player (" + users[i]['cooperativa'] + ')   -dsitribuidores (max 0.09)-> ' +0.09*users[i]['distribuidores']/soma + ' -pas (max 0.09)->  ' + 0.09*users[i]['pas']/soma1 + ' -promotores (max 0.07)-> ' + 0.07*users[i]['promotores']/soma2 + ' -comissao (max 0.09)-> ' + 0.09*users[i]['comissao']/soma3 + ' -propaganda (max 0.10)-> ' + 0.1*users[i]['propaganda']/soma5 + ' -modelos_de_servicos (max 0.12)-> ' + 0.12*users[i]['scoremod']/scorex + ' -precos_unitario (max 0.30)-> ' + 0.3*users[i]['scorepreco']/scorey)
-                     console.log(0.09*users[i]['distribuidores']/soma + 0.09*users[i]['pas']/soma1 + 0.07*users[i]['promotores']/soma2 + 0.09*users[i]['comissao']/soma3 + 0.1*users[i]['propaganda']/soma5 + 0.12*users[i]['scoremod']/scorex + 0.3*users[i]['scorepreco']/scorey)
+                     console.log("Parcela de mercado adquirida para o player (" + users[i]['cooperativa'] + ')   -dsitribuidores (max 0.09)-> ' +0.09*users[i]['distribuidores']/soma + ' -pas (max 0.09)->  ' + 0.09*users[i]['pas']/soma1 + ' -promotores (max 0.07)-> ' + 0.07*users[i]['promotores']/soma2 + ' -comissao (max 0.09)-> ' + 0.09*users[i]['comissao']/soma3 + ' -propaganda (max 0.10)-> ' + 0.1*users[i]['propaganda']/soma5 + ' -modelos_de_servicos (max 0.12)-> ' + 0.12*users[i]['scoremod']/scorex + ' -precos_unitario (max 0.30)-> ' + 0.3*users[i]['scorepreco']/scorey + ' -propaganda_unitaria (max 0.10)-> ' + 0.1*users[i]['scorepro']/scorep)
+                     console.log(0.09*users[i]['distribuidores']/soma + 0.09*users[i]['pas']/soma1 + 0.07*users[i]['promotores']/soma2 + 0.09*users[i]['comissao']/soma3 + 0.1*users[i]['propaganda']/soma5 + 0.12*users[i]['scoremod']/scorex + 0.3*users[i]['scorepreco']/scorey + 0.10*users[i]['scorepro']/scorep)
                     }
                 for(let i = 0; i < users.length; i++){
                     
@@ -531,9 +532,7 @@ socketsadm.on('connection', (socket) => { //conversa do server com o client do A
                 }
 
             })
-            .catch((err) => {console.log('erro n 708 =>' + err)})
-    })
-    socket.on('inicar-turno', () => {
+           .catch((err) => {console.log('erro n 708 =>' + err)})
         Aluno.find({ativo: 1})
             .then((users) => {
                 //console.log(users)
@@ -689,28 +688,28 @@ serveradm.listen(5000, () => {
 //INTERACAO COM O BANCO DE DAOS \/
 
 
-        let jogador = new Aluno({ sockid: 123456, scoremod: 0, scorepreco: 0, propaganda: 220, faturamento: 0, ativo: 1, taokeys: 18720000, comissao: 0.25, frota: 10, cooperativa: '3irmas', pas: 32, distribuidores: 420, promotores: 300, senha: '666', 
-        147:[100,1,288],
-        159:[0,0,396],
-        149:[0,0,360],
-        148:[0,0,324],
-        158:[0,0,360],
-        157:[1600,1,324],
-        257:[0,0,396],
-        258:[0,0,432],
-        259:[0,0,468],
-        267:[0,0,432],
-        268:[0,0,468],
-        269:[0,0,504],
-        347:[0,0,432],
-        348:[0,0,468],
-        349:[0,0,504],
-        357:[0,0,468],
-        358:[0,0,504],
-        359:[0,0,540],
-        367:[0,0,504],
-        368:[0,0,540],
-        369:[0,0,576]});
+        let jogador = new Aluno({ sockid: 123456, scorepro: 0, scoremod: 0, scorepreco: 0, propaganda: 220, faturamento: 0, ativo: 1, taokeys: 18720000, comissao: 0.25, frota: 10, cooperativa: '3irmas', pas: 32, distribuidores: 420, promotores: 300, senha: '666', 
+        147:[100,1,288,600],
+        159:[0,0,396,600],
+        149:[0,0,360,600],
+        148:[0,0,324,600],
+        158:[0,0,360,600],
+        157:[0,1,324,600],
+        257:[0,0,396,600],
+        258:[0,0,432,600],
+        259:[0,0,468,600],
+        267:[0,0,432,600],
+        268:[0,0,468,600],
+        269:[0,0,504,600],
+        347:[0,0,432,600],
+        348:[0,0,468,600],
+        349:[0,0,504,600],
+        357:[0,0,468,600],
+        358:[0,0,504,600],
+        359:[0,0,540,600],
+        367:[0,0,504,600],
+        368:[0,0,540,600],
+        369:[0,0,576,600]});
         //jogador.save()
         //    .then(Aluno.find({ nome: 'Pedro'}))
          //   .then((users) => {console.log(users)})
@@ -718,7 +717,7 @@ serveradm.listen(5000, () => {
         //mongoose.connection.collections.alunos.drop()
         //jogador.save()
         //    .then(Aluno.find({ nome: 'Pedo'}))
-        //    .then((pessoa) => {console.log(pessoa)})
+        //   .then((pessoa) => {console.log(pessoa)})
         //    .catch((err) => {console.log('eerro: ' + err)})
             
           //  jogador.save(() => {

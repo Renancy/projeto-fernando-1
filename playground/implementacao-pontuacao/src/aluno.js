@@ -16,6 +16,7 @@ const UserSchema = new Schema({
     propaganda: Number,
     scoremod: Number,
     scorepreco: Number,
+    scorepro: Number,
         147:Array,
         148:Array,
         149:Array,
